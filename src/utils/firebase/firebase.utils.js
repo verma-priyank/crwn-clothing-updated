@@ -30,6 +30,20 @@ const firebaseapp = initializeApp(firebaseConfig);
     const UserDocRef =  doc(db , 'users' , userauth.uid)
     console.log(UserDocRef)
     const snapshot = await getDoc(UserDocRef)
-    console.log(snapshot)
     console.log(snapshot.exists())
+    if(!snapshot.exists()){
+      const {displayName , email} = userauth;
+      const createdAt = new Date()
+      try{
+       await setDoc(UserDocRef, {
+        displayName,
+        email,
+        createdAt
+       })
+      }catch(error){
+         console.log(error)
+      }
+    }else{
+      return UserDocRef
+    }
   }
