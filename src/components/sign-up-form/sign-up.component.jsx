@@ -1,4 +1,6 @@
-import { useState } from "react";
+import {   useState } from "react";
+
+
 import {
   createAuthUserWithEmailAndPassword,
   CreateUserDocumentFromAuth,
@@ -14,14 +16,16 @@ const SignUp = () => {
     confirmpassword: "",
   });
   const { displayName, email, password, confirmpassword } = formfields;
+  
   const handlechange = (e) => {
     const { value, name } = e.target;
 
     setformFields({ ...formfields, [name]: value });
+    
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
+    
     if (password !== confirmpassword) {
       alert("Passwords do not match");
       return;
@@ -31,8 +35,7 @@ const SignUp = () => {
           email,
           password
         );
-
-        await CreateUserDocumentFromAuth(user, { displayName });
+         await CreateUserDocumentFromAuth(user, { displayName });
         setformFields({
           displayName: "",
           email: "",
