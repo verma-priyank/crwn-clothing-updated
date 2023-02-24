@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import {
   signInWithPopup,
   GoogleAuthProvider,
+  
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -25,11 +26,13 @@ const firebaseapp = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
 
+
 provider.setCustomParameters({
   prompt: "select_account",
 });
 export const auth = getAuth();
 export const SignInwithGooglePopup = () => signInWithPopup(auth, provider);
+
 
 const db = getFirestore();
 

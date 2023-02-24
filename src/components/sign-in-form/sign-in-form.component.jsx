@@ -3,6 +3,7 @@ import {  useState } from "react";
 
 import {
   CreateUserDocumentFromAuth,
+ 
   SignInwithGooglePopup,
   signInAuthWithEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
@@ -74,7 +75,8 @@ const SignIn = () => {
         </Button>
         <Button type="button" onClick={GoogleSignIn} buttonType="google">
           Google Sign In
-        </Button></div>
+        </Button>
+       </div>
       </form>
     </div>
   );

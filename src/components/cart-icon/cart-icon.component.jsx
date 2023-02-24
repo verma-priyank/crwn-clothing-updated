@@ -5,14 +5,14 @@ import { CartContext } from "../../context/cart.context"
 
 const CartIcon = () =>{
 
-const {isCartOpen ,setisCartOpen} = useContext(CartContext)
+const {isCartOpen ,setisCartOpen ,cartCount} = useContext(CartContext)
 const cartHandler =()=>{
     setisCartOpen(!isCartOpen)
 }
 
     return(<div className="cart-icon-container">
         <ShoppingBag className="shopping-icon" onClick={cartHandler} />
-        <span className="item-count">0</span>
+        <span className="item-count">{cartCount}</span>
         </div>)
 }
 

@@ -14,8 +14,9 @@ const SignUp = () => {
     email: "",
     password: "",
     confirmpassword: "",
+    
   });
-  const { displayName, email, password, confirmpassword } = formfields;
+  const { displayName, email, password, confirmpassword , } = formfields;
   
   const handlechange = (e) => {
     const { value, name } = e.target;
@@ -70,6 +71,7 @@ const SignUp = () => {
           name="email"
           value={email}
         />
+       
 
         <FormInput
           label="Password"
