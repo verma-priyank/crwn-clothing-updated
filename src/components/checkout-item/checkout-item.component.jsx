@@ -6,7 +6,7 @@ const CheckoutItem = ({cartitems}) =>{
     const {name , imageUrl , price,quantity} = cartitems;
     const {clearItemFromCart,addItemsToCart,reduceItemsToCart} = useContext(CartContext)
 
-    return (<div className="checkout-item-container">
+    return (<div className="checkout-item-container" >
       <div className="image-container">
       <img src={imageUrl} alt={`${name}`} />
       </div>

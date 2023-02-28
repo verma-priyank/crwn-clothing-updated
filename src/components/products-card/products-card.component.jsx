@@ -3,7 +3,7 @@ import { CartContext } from "../../context/cart.context";
 import Button from "../button/button.component";
 import "./products-card.styles.scss"
 const ProductsCard =({products}) =>{
-
+    
    const {name , imageUrl , price } = products;
    const {addItemsToCart} = useContext(CartContext)
       const handleclick = async() =>{
