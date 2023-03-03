@@ -1,4 +1,6 @@
-import { useState } from "react";
+import {   useState } from "react";
+
+
 import {
   createAuthUserWithEmailAndPassword,
   CreateUserDocumentFromAuth,
@@ -12,16 +14,19 @@ const SignUp = () => {
     email: "",
     password: "",
     confirmpassword: "",
+    
   });
-  const { displayName, email, password, confirmpassword } = formfields;
+  const { displayName, email, password, confirmpassword , } = formfields;
+  
   const handlechange = (e) => {
     const { value, name } = e.target;
 
     setformFields({ ...formfields, [name]: value });
+    
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
+    
     if (password !== confirmpassword) {
       alert("Passwords do not match");
       return;
@@ -31,8 +36,8 @@ const SignUp = () => {
           email,
           password
         );
-
-        await CreateUserDocumentFromAuth(user, { displayName });
+        
+         await CreateUserDocumentFromAuth(user, { displayName });
         setformFields({
           displayName: "",
           email: "",
@@ -48,7 +53,7 @@ const SignUp = () => {
   return (
     <div className="sign-up-container">
     <h2>Don't have an account ?</h2>
-    <span>sign up with your email and Password</span>
+    <span>Sign up with your email and Password</span>
       <form onSubmit={handlesubmit}>
         <FormInput
           label="Display Name"
@@ -67,6 +72,7 @@ const SignUp = () => {
           name="email"
           value={email}
         />
+       
 
         <FormInput
           label="Password"
@@ -85,7 +91,7 @@ const SignUp = () => {
           name="confirmpassword"
           value={confirmpassword}
         />
-        <Button type="submit" buttonType="">SignUp</Button>
+        <Button type="submit" buttonType="">Sign Up</Button>
       </form>
     </div>
   );
