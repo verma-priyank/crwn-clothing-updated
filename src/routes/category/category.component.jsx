@@ -1,31 +1,34 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ProductsCard from "../../components/products-card/products-card.component";
-import { CategoriesContext } from "../../context/categories.context";
-import "./category.styles.scss"
+import { useState, useEffect, Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-const Category =()=>{
-    const {category} = useParams();
-    
-    const {categoriesMap} = useContext(CategoriesContext)
-    
-    const [products ,setproducts] = useState(categoriesMap[category]);
-    useEffect(()=>{
-        setproducts(categoriesMap[category])
-        
-    },[categoriesMap,category])
-  
-    return (
-        <>
-        <h2 className="category-title">{category.toUpperCase()}</h2>
-        <div className="category-container">
-        
-        {products && products.map(item=>{
-            return <ProductsCard key={item.id} products={item}/>
-        })}
-        </div></>
-    )
-  
-}
+import ProductCard from '../../components/product-card/product-card.component';
+
+import { LoadingSelector, selectCategoriesMap } from '../../store/categories/category.selector';
+import Spinner from '../../components/spinner/spinner.component';
+import { CategoryContainer, Title } from './category.styles';
+
+const Category = () => {
+  const { category } = useParams();
+  const categoriesMap = useSelector(selectCategoriesMap);
+  const [products, setProducts] = useState(categoriesMap[category]);
+  const isLoading = useSelector(LoadingSelector)
+  useEffect(() => {
+    setProducts(categoriesMap[category]);
+  }, [category, categoriesMap]);
+
+  return (
+    <Fragment>
+      <Title>{category.toUpperCase()}</Title>
+      {isLoading ? <Spinner/> :  <CategoryContainer>
+      {products &&
+        products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+    </CategoryContainer>}
+     
+    </Fragment>
+  );
+};
 
 export default Category;
